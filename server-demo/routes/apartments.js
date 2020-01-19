@@ -5,13 +5,32 @@ const connection = require("../db/config");
 const api = require("../db/api/get-apartments");
 
 router.get("/", function(req, res, next) {
+  return new Promise((resolve, reject) => {
+    try {
+      const query = "select * from apartments where availability='available'";
+      connection.query(query, (error, results, fields) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve(results);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  })
+    .then(apartments => res.status(200).json({ apartments }))
+    .catch(error => res.status(500).json({ error: error.message }));
+});
+
+router.get("/", function(req, res, next) {
   api
     .getAll(req.query)
     .then(apartments => res.status(200).json({ apartments }))
     .catch(error => res.status(500).json({ error: error.message }));
 });
 
-router.post("/",async function(req, res, next) {
+router.post("/", async function(req, res, next) {
   const {
     user_id,
     address,
@@ -55,7 +74,7 @@ router.post("/",async function(req, res, next) {
     });
   });
   const result = await promise;
-  addToHistory(result.insertId, user_id, res)
+  addToHistory(result.insertId, user_id, res);
 });
 
 addToHistory = (apartmentId, userId, res) => {
@@ -66,11 +85,11 @@ addToHistory = (apartmentId, userId, res) => {
       if (err) {
         reject(err);
       } else {
-        resolve(result)
+        resolve(result);
         return true;
       }
     });
-  }).then(res.status(200).json('great'));
+  }).then(res.status(200).json("great"));
 };
 
 module.exports = router;
