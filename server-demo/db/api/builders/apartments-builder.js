@@ -1,6 +1,6 @@
 class ApartmentsBuilder{
     constructor(page, size){
-        this.query = `SELECT a.id, concat(u.first_name, " " ,u.last_name) as user_name ,a.address, c.name as city_name, a.price, a.number_of_room, a.number_of_bath, a.sqft, abs(DATEDIFF(a.created_on, now())) as days_on_web, a.availability, a.property_type, a.main_image, co.name as country_name FROM apartments a join cities c on a.city_id = c.id join users u on a.user_id = u.id join countries co on co.id = c.country_id where availability="available" and 1 ORDER BY a.id
+        this.query = `SELECT a.id, concat(u.first_name, " " ,u.last_name) as user_name ,a.address, c.name as city_name, a.price, a.number_of_room, a.number_of_bath, a.sqft, abs(DATEDIFF(a.created_on, now())) as days_on_web, a.availability, a.property_type, a.main_image, co.name as country_name FROM apartments a join cities c on a.city_id = c.id join users u on a.user_id = u.id join countries co on co.id = c.country_id where availability="available" and 1
         `;
         this.params = [];
         this.page = page;
@@ -44,7 +44,6 @@ class ApartmentsBuilder{
     }
     build(){
         this.query += ` limit ${(this.page-1)*this.size}, ${this.size};`
-        console.log(this.params)
         return {query: this.query, params: this.params};
     }
 }
