@@ -20,6 +20,7 @@ router.get("/", function(req, res, next) {
     .catch(error => res.status(500).json({ error: error.message }));
 });
 
+
 router.get("/countApartments", (req, res) => {
   return new Promise((resolve, reject) => {
     try {

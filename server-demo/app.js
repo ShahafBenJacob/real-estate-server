@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const apartmentsRouter = require('./routes/apartments');
 const usersRouter = require('./routes/users');
 const citiesRouter = require('./routes/cities');
+const imagesRouter = require('./routes/images')
 
 
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter);
 app.use('/apartments', apartmentsRouter);
 app.use('/users', usersRouter);
 app.use('/cities', citiesRouter);
+app.use('/images', imagesRouter);
 
 
 
