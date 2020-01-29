@@ -45,6 +45,7 @@ class ApartmentsBuilder{
         // this.query += ` limit 0, ${this.size};`
 
         // this.query += ` limit ${(this.page-1)*this.size}, ${this.size};`
+        this.query += 'order by 9'
         return {query: this.query, params: this.params};
     }
 }
