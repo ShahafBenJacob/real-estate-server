@@ -92,7 +92,7 @@ router.get("/buttonsValues", (req, res) => {
 
 
 
-router.post("/", async function(req, res, next) {
+router.post("/", isUser, async function(req, res, next) {
   const {
     user_id,
     address,

@@ -13,7 +13,6 @@ router.post("/", async (req, res, next) => {
     }else{
       res.status(200).json({error: 'Invalid email or password'});
     }
-
   }catch(error){
     //return error to the user
     res.status(500).json({ error: error.message });
