@@ -9,6 +9,7 @@ const apartmentsRouter = require('./routes/apartments');
 const usersRouter = require('./routes/users');
 const citiesRouter = require('./routes/cities');
 const imagesRouter = require('./routes/images')
+const loginRouter = require('./routes/login')
 
 
 
@@ -26,6 +27,7 @@ app.use('/apartments', apartmentsRouter);
 app.use('/users', usersRouter);
 app.use('/cities', citiesRouter);
 app.use('/images', imagesRouter);
+app.use('/login', loginRouter);
 
 
 

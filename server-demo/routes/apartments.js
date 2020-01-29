@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const connection = require("../db/config");
 
+const {isUser} = require('../middlewares/auth');
+const connection = require("../db/config");
 const getAll = require("../db/api/get-apartments");
 
 createArrOfPrice = (min, max) => {
@@ -11,8 +12,6 @@ createArrOfPrice = (min, max) => {
   }
   return newArr;
 };
-
-
 
 router.get("/", function(req, res, next) {
   getAll.getAll(req.query)
