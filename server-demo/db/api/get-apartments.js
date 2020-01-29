@@ -21,6 +21,7 @@ function getAll({city_name, price, number_of_room, number_of_bath, property_type
             });
         }catch(e){
             console.log(e);
+            reject(e);
         }
     });
 }
